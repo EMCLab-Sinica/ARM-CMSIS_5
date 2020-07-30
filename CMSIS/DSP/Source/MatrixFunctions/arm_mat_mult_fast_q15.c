@@ -109,6 +109,8 @@ arm_status arm_mat_mult_fast_q15(
 
   {
     /* Matrix transpose */
+    if (pSrcBT) {
+
     do
     {
       /* The pointer px is set to starting address of column being processed */
@@ -213,6 +215,10 @@ arm_status arm_mat_mult_fast_q15(
       row--;
 
     } while (row > 0U);
+
+    } else {
+      pSrcBT = pSrcB->pData;
+    }
 
     /* Reset variables for usage in following multiplication process */
     row = numRowsA;
